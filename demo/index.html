@@ -55,7 +55,7 @@
           }
         });
         this.set('data', this.data);
-      }
+      };
 
       /**
        * Uncheck all items
@@ -68,7 +68,7 @@
           }
         });
         this.set('data', this.data);
-      }
+      };
 
       /**
        * Get Search Query
@@ -76,7 +76,7 @@
        */
       demo.handleChangedSearchQuery = function(e) {
         this.searchQuery = e.detail.searchQuery;
-      }
+      };
 
       /**
        * Search in all items
@@ -88,7 +88,7 @@
         } else {
           return item.desc.toUpperCase().match(searchQuery.toUpperCase()) || item.info.toUpperCase().match(searchQuery.toUpperCase());
         }
-      }
+      };
 
       /**
        * Clear Search Query
@@ -96,7 +96,7 @@
        */
       demo.handleClearSearchQuery = function() {
         this.searchQuery = null;
-      }
+      };
 
       /**
        * Check single Item
@@ -105,7 +105,7 @@
       demo.handleCheck = function(e) {
         var dataObj = e.detail;
         alert("Item is checked: " + JSON.stringify(dataObj));
-      }
+      };
 
       /**
        * Uncheck single Item
@@ -114,7 +114,7 @@
       demo.handleUncheck = function(e) {
         var dataObj = e.detail;
         alert("Item is unchecked: " +JSON.stringify(dataObj));
-      }
+      };
     </script>
   </body>
 </html>
