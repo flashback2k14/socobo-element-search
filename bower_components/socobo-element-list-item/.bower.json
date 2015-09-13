@@ -34,11 +34,11 @@
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "_release": "331c04ef52",
+  "_release": "193bff055c",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "331c04ef5246c09b46aace11bb99b80c34bbdc13"
+    "commit": "193bff055cef55622041620369a334f6b283d7cc"
   },
   "_source": "git://github.com/flashback2k14/socobo-element-list-item.git",
   "_target": "master",
