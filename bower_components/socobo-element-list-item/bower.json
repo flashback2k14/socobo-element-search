@@ -1,0 +1,38 @@
+{
+  "name": "socobo-element-list-item",
+  "version": "0.0.2",
+  "description": "Element representing a summarized information about one recipe, item or other",
+  "author": [
+    "hetec"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "socobo",
+    "frontend"
+  ],
+  "main": "socobo-element-list-item.html",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hetec/socobo-element-list-item.git"
+  },
+  "license": "",
+  "homepage": "",
+  "ignore": [],
+  "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#1.0.2",
+    "paper-elements": "PolymerElements/paper-elements#1.0.2",
+    "platinum-elements": "PolymerElements/platinum-elements#1.1.1",
+    "neon-elements": "PolymerElements/neon-elements#1.0.0",
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
+    "test-fixture": "polymerelements/test-fixture#^1.0.0",
+    "web-component-tester": "*"
+  }
+}

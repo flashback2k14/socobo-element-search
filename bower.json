@@ -13,27 +13,28 @@
     "project",
     "search"
   ],
-  "main": "socobo-element-search.html",
+  "main": "index.html",
   "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/flashback2k14/socobo-element-search"
   },
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/flashback2k14/socobo-element-search/",
+  "homepage": "http://flashback2k14.github.io/socobo-element-search/",
   "ignore": [],
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#1.0.2",
     "paper-elements": "PolymerElements/paper-elements#1.0.2",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#^1.0.0",
+    "socobo-element-search": "flashback2k14/socobo-element-search#master",
+    "socobo-element-list-item": "flashback2k14/socobo-element-list-item#master"
   },
   "devDependencies": {
     "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
-    "web-component-tester": "*",
-    "socobo-element-list-item": "flashback2k14/socobo-element-list-item#master"
+    "web-component-tester": "*"
   }
 }
