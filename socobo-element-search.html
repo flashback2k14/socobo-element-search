@@ -1,26 +1,190 @@
 <link rel="import" href="elements.html">
 
+<!--
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--socobo-element-search-style-paper-material` | Mixin for styling paper material | `{}`
+`--socobo-element-search-style-paper-toolbar` | Mixin for styling paper toolbar | `{}`
+`--socobo-element-search-style-search-container` | Mixin for styling search container | `{}`
+`--socobo-element-search-style-checkbox` | Mixin for styling paper checkbox | `{}`
+`--socobo-element-search-style-checkbox-margin-top` | Set top margin for paper checkbox | `{25px}`
+`--socobo-element-search-style-checkbox-margin-left` | Set left margin for paper checkbox | `{10px}`
+`--socobo-element-search-style-search-input-container` | Mixin for styling search input container | `{}`
+`--socobo-element-search-style-search-query` | Mixin for styling paper input | `{}`
+`--socobo-element-search-style-search-query-margin-top` | Set top margin for paper input | `{-5px}`
+`--socobo-element-search-style-search-query-margin-left` | Set left margin for paper input | `{10px}`
+`--socobo-element-search-style-clear-search-query` | Mixin for styling clear paper icon button | `{}`
+`--socobo-element-search-style-clear-search-query-margin-top` | Set top margin for clear paper icon button | `{10px}`
+`--socobo-element-search-style-clear-search-query-margin-left` | Set left margin for clear paper icon button | `{10px}`
+`--socobo-element-search-style-toggle-search-container` | Mixin for styling search paper icon button | `{}`
+`--socobo-element-search-style-toggle-search-container-margin-top` | Set top margin for search paper icon button | `{10px}`
+`--socobo-element-search-style-toggle-search-container-margin-left` | Set left margin for search paper icon button | `{10px}`
+`--socobo-element-search-paper-icon-button-hover-color` | Set color for paper icon button hover | `{#EEEEEE}`
+
+@demo demo/index.html
+-->
 <dom-module id="socobo-element-search">
   <style>
     :host {
       display: block;
-      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .style-paper-material {
+      @apply(--socobo-element-search-style-paper-material);
+    }
+    .style-paper-toolbar {
+      @apply(--socobo-element-search-style-paper-toolbar);
+    }
+    .style-search-container {
+      @apply(--layout-horizontal);
+      width: 100%;
+      height: 100%;
+      @apply(--socobo-element-search-style-search-container);
+    }
+    .style-checkbox {
+      @apply(--layout-start-justified);
+      margin-top: var(--socobo-element-search-style-checkbox-margin-top, 25px);
+      margin-left: var(--socobo-element-search-style-checkbox-margin-left, 10px);
+      --paper-checkbox-unchecked-color: var(--text-primary-color);
+      --paper-checkbox-checked-color: var(--accent-color);
+      --paper-checkbox-label-color: var(--text-primary-color);
+      @apply(--socobo-element-search-style-checkbox);
+    }
+    .hide-search-input-container {
+      display: none;
+    }
+    .style-search-input-container {
+      @apply(--layout-horizontal);
+      width: 95%;
+      display: flex;
+      @apply(--socobo-element-style-search-search-input-container);
+    }
+    .style-search-query {
+      @apply(--layout-flex);
+      margin-top: var(--socobo-element-search-style-search-query-margin-top, -5px);
+      margin-left: var(--socobo-element-search-style-search-query-margin-left, 10px);
+      --paper-input-container-color: var(--text-primary-color);
+      --paper-input-container-focus-color: var(--text-primary-color);
+      --paper-input-container-input-color: var(--text-primary-color);
+      @apply(--socobo-element-search-style-search-query);
+    }
+    .style-clear-search-query {
+      margin-top: var(--socobo-element-search-style-clear-search-query-margin-top, 10px);
+      margin-left: var(--socobo-element-search-style-clear-search-query-margin-left, 10px);
+      padding: 15px;
+      @apply(--socobo-element-search-style-clear-search-query);
+    }
+    .style-toggle-search-container {
+      @apply(--layout-end-justified);
+      position: absolute !important;
+      top: 0;
+      right: 10px;
+      margin-top: var(--socobo-element-search-style-toggle-search-container-margin-top, 10px);
+      margin-left: var(--socobo-element-search-style-toggle-search-container-margin-left, 10px);
+      padding: 15px;
+      @apply(--socobo-element-search-style-toggle-search-container);
+    }
+    paper-icon-button:hover{
+      color: var(--socobo-element-search-paper-icon-button-hover-color, #EEEEEE);
     }
   </style>
 
   <template>
-
-
+    <paper-material class="style-paper-material" elevation="3">
+      <paper-toolbar class="style-paper-toolbar">
+        <div class="style-search-container">
+          <paper-checkbox
+            id="chbCheckAllItems"
+            class="style-checkbox"
+            on-click="checkAllItems">
+          </paper-checkbox>
+          <div id="searchInputContainer" class="hide-search-input-container">
+            <paper-input
+              id="txtSearchQuery"
+              class="style-search-query"
+              label="Search"
+              type="text"
+              value="{{searchStr}}"
+              on-keyup="searchQueryChanged">
+            </paper-input>
+            <paper-icon-button
+              class="style-clear-search-query"
+              icon="clear"
+              on-click="clearSearchQuery">
+            </paper-icon-button>
+          </div>
+          <paper-icon-button
+            class="style-toggle-search-container" icon="search" on-click="toggleSearchContainer"></paper-icon-button>
+        </div>
+      </paper-toolbar>
+    </paper-material>
   </template>
-
 </dom-module>
 
 <script>
 (function() {
   Polymer({
-    is: 'socobo-element-search'
+    is: "socobo-element-search",
+    /**
+     * This Event is fired if the paper checkbox is checked. <br/>
+     * @event check-all-items
+     */
+    /**
+     * This Event is fired if the the paper checkbox is unchecked. <br/>
+     * @event uncheck-all-items
+     */
+    /**
+     * This Event is fired if the user typing in a search query. <br/>
+     * `Detail`: Object: { searchQuery: "QUERY" } <br/>
+     * @event changed-search-query
+     */
+    /**
+     * This Event is fired if the search query is cleared. <br/>
+     * @event clear-search-query
+     */
+    /**
+     * Method for firing event to check / uncheck all items. </br>
+     * @method checkAllItems
+     */
+    checkAllItems: function() {
+      if (this.$.chbCheckAllItems.checked) {
+        this.fire("check-all-items");
+      } else {
+        this.fire("uncheck-all-items");
+      }
+    },
+    /**
+     * Method for listening for search query input and firing event. </br>
+     * @method searchQueryChanged
+     */
+    searchQueryChanged: function() {
+      this.fire("changed-search-query", { searchQuery: this.searchStr });
+    },
+    /**
+     * Method for clear search query and firing event. </br>
+     * @method clearSearchQuery
+     */
+    clearSearchQuery: function() {
+      this.$.txtSearchQuery.value = "";
+      this.fire("clear-search-query");
+    },
+    /**
+     * Method for show / hide search input container. </br>
+     * @method toggleSearchContainer
+     */
+    toggleSearchContainer: function() {
+      var searchInputContainer = this.$.searchInputContainer;
 
-
+      if (searchInputContainer.classList.contains("hide-search-input-container")) {
+        searchInputContainer.classList.remove("hide-search-input-container");
+        searchInputContainer.classList.add("style-search-input-container");
+      } else {
+        searchInputContainer.classList.remove("style-search-input-container");
+        searchInputContainer.classList.add("hide-search-input-container");
+      }
+    }
   });
 })();
 </script>
