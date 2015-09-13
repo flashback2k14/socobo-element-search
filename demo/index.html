@@ -3,13 +3,118 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>socobo-element-template Demo</title>
+    <title>socobo-element-search Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../socobo-element-search.html">
+    <link rel="import" href="../../socobo-element-list-item/socobo-element-list-item.html">
   </head>
   <body>
-    <p>An example of <code>&lt;socobo-element-search&gt;</code>:</p>
+    <template is="dom-bind" id="demo">
+      <p>An example of <code>&lt;socobo-element-search&gt;</code>:</p>
 
-    <socobo-element-search></socobo-element-search>
+      <paper-material style="margin-top: 24px; margin-left: 50px; width: 80%; height: 600px;">
+        <socobo-element-search
+          on-check-all-items="handleCheckAllItems"
+          on-uncheck-all-items="handleUncheckAllItems"
+          on-changed-search-query="handleChangedSearchQuery"
+          on-clear-search-query="handleClearSearchQuery">
+        </socobo-element-search>
+
+        <template id="list" is="dom-repeat" items="{{data}}">
+          <template is="dom-if" if="{{_searchForItems(item, searchQuery)}}">
+            <socobo-element-list-item
+              obj="{{item}}"
+              on-check="handleCheck"
+              on-uncheck="handleUncheck">
+            </socobo-element-list-item>
+          </template>
+        </template>
+      </paper-material>
+    </template>
+
+    <script type="text/javascript">
+
+      var demo = document.querySelector("#demo");
+
+      demo.searchQuery = null;
+      demo.data = [
+        {isChecked: false, desc: "Mehl", info: "1kg"},
+        {isChecked: false, desc: "Butter", info: "250g"},
+        {isChecked: true, desc: "Gurke", info: "2 Stk."},
+        {isChecked: false, desc: "Puderzucker", info: "2kg"}
+      ];
+
+      /**
+       * Check all items
+       */
+      demo.handleCheckAllItems = function() {
+        this.data.forEach(function(obj, i) {
+          if(obj.hasOwnProperty("isChecked")) {
+            obj.isChecked = true;
+            demo.splice('data', i, 1, obj);
+          }
+        });
+        this.set('data', this.data);
+      }
+
+      /**
+       * Uncheck all items
+       */
+      demo.handleUncheckAllItems = function() {
+        this.data.forEach(function(obj, i) {
+          if(obj.hasOwnProperty("isChecked")) {
+            obj.isChecked = false;
+            demo.splice('data', i, 1, obj);
+          }
+        });
+        this.set('data', this.data);
+      }
+
+      /**
+       * Get Search Query
+       * @param e
+       */
+      demo.handleChangedSearchQuery = function(e) {
+        this.searchQuery = e.detail.searchQuery;
+      }
+
+      /**
+       * Search in all items
+       * @param e
+       */
+      demo._searchForItems = function(item, searchQuery) {
+        if (searchQuery === null ||typeof searchQuery === 'undefined') {
+          return item;
+        } else {
+          return item.desc.toUpperCase().match(searchQuery.toUpperCase()) || item.info.toUpperCase().match(searchQuery.toUpperCase());
+        }
+      }
+
+      /**
+       * Clear Search Query
+       * @param e
+       */
+      demo.handleClearSearchQuery = function() {
+        this.searchQuery = null;
+      }
+
+      /**
+       * Check single Item
+       * @param e
+       */
+      demo.handleCheck = function(e) {
+        var dataObj = e.detail;
+        alert("Item is checked: " + JSON.stringify(dataObj));
+      }
+
+      /**
+       * Uncheck single Item
+       * @param e
+       */
+      demo.handleUncheck = function(e) {
+        var dataObj = e.detail;
+        alert("Item is unchecked: " +JSON.stringify(dataObj));
+      }
+    </script>
   </body>
 </html>

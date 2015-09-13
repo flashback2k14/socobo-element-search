@@ -33,6 +33,7 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
-    "web-component-tester": "*"
+    "web-component-tester": "*",
+    "socobo-element-list-item": "flashback2k14/socobo-element-list-item#master"
   }
 }
