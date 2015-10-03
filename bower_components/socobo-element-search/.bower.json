@@ -33,13 +33,13 @@
     "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*",
-    "socobo-element-list-item": "flashback2k14/socobo-element-list-item#master"
+    "socobo-element-list-item": "hetec/socobo-element-list-item#master"
   },
-  "_release": "06caece71f",
+  "_release": "20000db743",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "06caece71fa6f5c8e86f0af851090068b28d403e"
+    "commit": "20000db7438d6b8b4959f73bfbd7d0c0f696f1d2"
   },
   "_source": "git://github.com/flashback2k14/socobo-element-search.git",
   "_target": "master",

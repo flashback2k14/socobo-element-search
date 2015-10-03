@@ -38,36 +38,30 @@
 
       demo.searchQuery = null;
       demo.data = [
-        {isChecked: false, desc: "Mehl", info: "1kg"},
-        {isChecked: false, desc: "Butter", info: "250g"},
-        {isChecked: true, desc: "Gurke", info: "2 Stk."},
-        {isChecked: false, desc: "Puderzucker", info: "2kg"}
+        {desc: "Mehl", info: "1kg"},
+        {desc: "Butter", info: "250g"},
+        {desc: "Gurke", info: "2 Stk."},
+        {desc: "Puderzucker", info: "2kg"}
       ];
 
       /**
        * Check all items
        */
       demo.handleCheckAllItems = function() {
-        this.data.forEach(function(obj, i) {
-          if(obj.hasOwnProperty("isChecked")) {
-            obj.isChecked = true;
-            demo.splice('data', i, 1, obj);
-          }
-        });
-        this.set('data', this.data);
+        var listView = this.$.list;
+        for (var i = 0; i < listView._instances.length; i++) {
+          listView._instances[i]._children[0].nextElementSibling.children[0].children[0].children[0].checked = true;
+        }
       };
 
       /**
        * Uncheck all items
        */
       demo.handleUncheckAllItems = function() {
-        this.data.forEach(function(obj, i) {
-          if(obj.hasOwnProperty("isChecked")) {
-            obj.isChecked = false;
-            demo.splice('data', i, 1, obj);
-          }
-        });
-        this.set('data', this.data);
+        var listView = this.$.list;
+        for (var i = 0; i < listView._instances.length; i++) {
+          listView._instances[i]._children[0].nextElementSibling.children[0].children[0].children[0].checked = false;
+        }
       };
 
       /**
@@ -80,7 +74,8 @@
 
       /**
        * Search in all items
-       * @param e
+       * @param item
+       * @param searchQuery
        */
       demo._searchForItems = function(item, searchQuery) {
         if (searchQuery === null ||typeof searchQuery === 'undefined') {
@@ -92,7 +87,6 @@
 
       /**
        * Clear Search Query
-       * @param e
        */
       demo.handleClearSearchQuery = function() {
         this.searchQuery = null;
@@ -113,7 +107,7 @@
        */
       demo.handleUncheck = function(e) {
         var dataObj = e.detail;
-        alert("Item is unchecked: " +JSON.stringify(dataObj));
+        alert("Item is unchecked: " + JSON.stringify(dataObj));
       };
     </script>
   </body>

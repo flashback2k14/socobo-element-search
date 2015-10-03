@@ -18,7 +18,7 @@
     "url": "https://github.com/hetec/socobo-element-list-item.git"
   },
   "license": "",
-  "homepage": "https://github.com/flashback2k14/socobo-element-list-item",
+  "homepage": "https://github.com/hetec/socobo-element-list-item",
   "ignore": [],
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#1.0.2",
@@ -34,13 +34,13 @@
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "_release": "193bff055c",
+  "_release": "35ae378784",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "193bff055cef55622041620369a334f6b283d7cc"
+    "commit": "35ae3787843ff1d30f59f2ebdaccb7295f27f1ae"
   },
-  "_source": "git://github.com/flashback2k14/socobo-element-list-item.git",
+  "_source": "git://github.com/hetec/socobo-element-list-item.git",
   "_target": "master",
-  "_originalSource": "flashback2k14/socobo-element-list-item"
+  "_originalSource": "hetec/socobo-element-list-item"
 }
