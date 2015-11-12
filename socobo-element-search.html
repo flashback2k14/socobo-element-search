@@ -10,14 +10,14 @@ Custom property | Description | Default
 `--socobo-element-search-style-search-container` | Mixin for styling search container | `{}`
 `--socobo-element-search-style-checkbox` | Mixin for styling paper checkbox | `{}`
 `--socobo-element-search-style-checkbox-margin-top` | Set top margin for paper checkbox | `{25px}`
-`--socobo-element-search-style-checkbox-margin-left` | Set left margin for paper checkbox | `{10px}`
+`--socobo-element-search-style-checkbox-margin-left` | Set left margin for paper checkbox | `{15px}`
 `--socobo-element-search-style-search-input-container` | Mixin for styling search input container | `{}`
 `--socobo-element-search-style-search-query` | Mixin for styling paper input | `{}`
 `--socobo-element-search-style-search-query-margin-top` | Set top margin for paper input | `{-5px}`
-`--socobo-element-search-style-search-query-margin-left` | Set left margin for paper input | `{10px}`
+`--socobo-element-search-style-search-query-margin-left` | Set left margin for paper input | `{30px}`
 `--socobo-element-search-style-clear-search-query` | Mixin for styling clear paper icon button | `{}`
-`--socobo-element-search-style-clear-search-query-margin-top` | Set top margin for clear paper icon button | `{10px}`
-`--socobo-element-search-style-clear-search-query-margin-left` | Set left margin for clear paper icon button | `{10px}`
+`--socobo-element-search-style-clear-search-query-margin-top` | Set top margin for clear paper icon button | `{15px}`
+`--socobo-element-search-style-clear-search-query-margin-left` | Set left margin for clear paper icon button | `{15px}`
 `--socobo-element-search-style-toggle-search-container` | Mixin for styling search paper icon button | `{}`
 `--socobo-element-search-style-toggle-search-container-margin-top` | Set top margin for search paper icon button | `{10px}`
 `--socobo-element-search-style-toggle-search-container-margin-left` | Set left margin for search paper icon button | `{10px}`
@@ -33,61 +33,59 @@ Custom property | Description | Default
         font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       .style-paper-material {
-      @apply(--socobo-element-search-style-paper-material);
+        @apply(--socobo-element-search-style-paper-material);
       }
       .style-paper-toolbar {
-      @apply(--socobo-element-search-style-paper-toolbar);
+        @apply(--socobo-element-search-style-paper-toolbar);
       }
       .style-search-container {
-      @apply(--layout-horizontal);
+        @apply(--layout-horizontal);
         width: 100%;
         height: 100%;
-      @apply(--socobo-element-search-style-search-container);
+        @apply(--socobo-element-search-style-search-container);
       }
       .style-checkbox {
-      @apply(--layout-start-justified);
+        @apply(--layout-start-justified);
         margin-top: var(--socobo-element-search-style-checkbox-margin-top, 25px);
-        margin-left: var(--socobo-element-search-style-checkbox-margin-left, 10px);
+        margin-left: var(--socobo-element-search-style-checkbox-margin-left, 15px);
         --paper-checkbox-unchecked-color: var(--text-primary-color);
         --paper-checkbox-checked-color: var(--accent-color);
         --paper-checkbox-label-color: var(--text-primary-color);
-      @apply(--socobo-element-search-style-checkbox);
+        @apply(--socobo-element-search-style-checkbox);
       }
       .hide-search-input-container {
         display: none;
       }
       .style-search-input-container {
-      @apply(--layout-horizontal);
-        width: 95%;
+        @apply(--layout-horizontal);
+        width: 93%;
         display: flex;
-      @apply(--socobo-element-style-search-search-input-container);
+        @apply(--socobo-element-style-search-search-input-container);
       }
       .style-search-query {
-      @apply(--layout-flex);
+        @apply(--layout-flex);
         margin-top: var(--socobo-element-search-style-search-query-margin-top, -5px);
-        margin-left: var(--socobo-element-search-style-search-query-margin-left, 10px);
+        margin-left: var(--socobo-element-search-style-search-query-margin-left, 30px);
         --paper-input-container-color: var(--text-primary-color);
         --paper-input-container-focus-color: var(--text-primary-color);
         --paper-input-container-input-color: var(--text-primary-color);
-      @apply(--socobo-element-search-style-search-query);
+        @apply(--socobo-element-search-style-search-query);
       }
       .style-clear-search-query {
-        margin-top: var(--socobo-element-search-style-clear-search-query-margin-top, 10px);
-        margin-left: var(--socobo-element-search-style-clear-search-query-margin-left, 10px);
-        padding: 15px;
-      @apply(--socobo-element-search-style-clear-search-query);
+        margin-top: var(--socobo-element-search-style-clear-search-query-margin-top, 15px);
+        margin-left: var(--socobo-element-search-style-clear-search-query-margin-left, 15px);
+        @apply(--socobo-element-search-style-clear-search-query);
       }
       .style-toggle-search-container {
-      @apply(--layout-end-justified);
+        @apply(--layout-end-justified);
         position: absolute !important;
-        top: 0;
-        right: 10px;
+        top: 5px;
+        right: 15px;
         margin-top: var(--socobo-element-search-style-toggle-search-container-margin-top, 10px);
         margin-left: var(--socobo-element-search-style-toggle-search-container-margin-left, 10px);
-        padding: 15px;
-      @apply(--socobo-element-search-style-toggle-search-container);
+        @apply(--socobo-element-search-style-toggle-search-container);
       }
-      paper-icon-button:hover{
+      paper-icon-button:hover {
         color: var(--socobo-element-search-paper-icon-button-hover-color, #EEEEEE);
       }
     </style>
@@ -116,7 +114,10 @@ Custom property | Description | Default
             </paper-icon-button>
           </div>
           <paper-icon-button
-            class="style-toggle-search-container" icon="search" on-click="toggleSearchContainer"></paper-icon-button>
+            class="style-toggle-search-container"
+            icon="search"
+            on-click="toggleSearchContainer">
+          </paper-icon-button>
         </div>
       </paper-toolbar>
     </paper-material>
