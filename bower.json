@@ -1,6 +1,6 @@
 {
   "name": "socobo-element-search",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Search Element for Socobo-Project",
   "author": [
     "flashback2k14"
@@ -35,5 +35,10 @@
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*",
     "socobo-element-list-item": "hetec/socobo-element-list-item#master"
+  },
+  "resolutions": {
+    "paper-elements": "1.0.6",
+    "iron-elements": "1.0.4",
+    "polymer": "1.2.0"
   }
 }

@@ -112,6 +112,21 @@ Custom property | Description | Default
               icon="clear"
               on-click="clearSearchQuery">
             </paper-icon-button>
+            <!--<paper-icon-button
+              class="style-clear-search-query"
+              icon="delete"
+              on-click="clearSearchQuery">
+            </paper-icon-button>-->
+            <!--<paper-icon-button
+              class="style-clear-search-query"
+              icon="remove-circle-outline"
+              on-click="clearSearchQuery">
+            </paper-icon-button>-->
+            <!--<paper-icon-button
+              class="style-clear-search-query"
+              icon="hardware:keyboard-backspace"
+              on-click="clearSearchQuery">
+            </paper-icon-button>-->
           </div>
           <paper-icon-button
             class="style-toggle-search-container"
@@ -183,6 +198,7 @@ Custom property | Description | Default
           } else {
             searchInputContainer.classList.remove("style-search-input-container");
             searchInputContainer.classList.add("hide-search-input-container");
+            this.clearSearchQuery();
           }
         }
       });
