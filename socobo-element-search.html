@@ -15,9 +15,10 @@ Custom property | Description | Default
 `--socobo-element-search-style-search-query` | Mixin for styling paper input | `{}`
 `--socobo-element-search-style-search-query-margin-top` | Set top margin for paper input | `{-5px}`
 `--socobo-element-search-style-search-query-margin-left` | Set left margin for paper input | `{30px}`
+`--socobo-element-search-style-btn-position` | Set position for Buttons | `{}`
 `--socobo-element-search-style-clear-search-query` | Mixin for styling clear paper icon button | `{}`
-`--socobo-element-search-style-clear-search-query-margin-top` | Set top margin for clear paper icon button | `{15px}`
-`--socobo-element-search-style-clear-search-query-margin-left` | Set left margin for clear paper icon button | `{15px}`
+`--socobo-element-search-style-clear-search-query-margin-top` | Set top margin for clear paper icon button | `{10px}`
+`--socobo-element-search-style-clear-search-query-margin-left` | Set left margin for clear paper icon button | `{10px}`
 `--socobo-element-search-style-toggle-search-container` | Mixin for styling search paper icon button | `{}`
 `--socobo-element-search-style-toggle-search-container-margin-top` | Set top margin for search paper icon button | `{10px}`
 `--socobo-element-search-style-toggle-search-container-margin-left` | Set left margin for search paper icon button | `{10px}`
@@ -71,16 +72,20 @@ Custom property | Description | Default
         --paper-input-container-input-color: var(--text-primary-color);
         @apply(--socobo-element-search-style-search-query);
       }
-      .style-clear-search-query {
-        margin-top: var(--socobo-element-search-style-clear-search-query-margin-top, 15px);
-        margin-left: var(--socobo-element-search-style-clear-search-query-margin-left, 15px);
-        @apply(--socobo-element-search-style-clear-search-query);
-      }
-      .style-toggle-search-container {
+      .style-btn-position {
         @apply(--layout-end-justified);
         position: absolute !important;
         top: 5px;
         right: 15px;
+        @apply(--socobo-element-search-style-btn-position);
+      }
+      .style-clear-search-query {
+        margin-top: var(--socobo-element-search-style-clear-search-query-margin-top, 10px);
+        margin-left: var(--socobo-element-search-style-clear-search-query-margin-left, 10px);
+        display: none;
+        @apply(--socobo-element-search-style-clear-search-query);
+      }
+      .style-toggle-search-container {
         margin-top: var(--socobo-element-search-style-toggle-search-container-margin-top, 10px);
         margin-left: var(--socobo-element-search-style-toggle-search-container-margin-left, 10px);
         @apply(--socobo-element-search-style-toggle-search-container);
@@ -107,31 +112,18 @@ Custom property | Description | Default
               value="{{searchStr}}"
               on-keyup="searchQueryChanged">
             </paper-input>
-            <paper-icon-button
-              class="style-clear-search-query"
-              icon="clear"
-              on-click="clearSearchQuery">
-            </paper-icon-button>
-            <!--<paper-icon-button
-              class="style-clear-search-query"
-              icon="delete"
-              on-click="clearSearchQuery">
-            </paper-icon-button>-->
-            <!--<paper-icon-button
-              class="style-clear-search-query"
-              icon="remove-circle-outline"
-              on-click="clearSearchQuery">
-            </paper-icon-button>-->
-            <!--<paper-icon-button
-              class="style-clear-search-query"
-              icon="hardware:keyboard-backspace"
-              on-click="clearSearchQuery">
-            </paper-icon-button>-->
           </div>
           <paper-icon-button
-            class="style-toggle-search-container"
+            id="btnClear"
+            class="style-btn-position style-clear-search-query"
+            icon="clear"
+            on-tap="_clearSearchQuery">
+          </paper-icon-button>
+          <paper-icon-button
+            id="btnSearch"
+            class="style-btn-position style-toggle-search-container"
             icon="search"
-            on-click="toggleSearchContainer">
+            on-tap="_toggleSearchElements">
           </paper-icon-button>
         </div>
       </paper-toolbar>
@@ -156,10 +148,6 @@ Custom property | Description | Default
          * @event changed-search-query
          */
         /**
-         * This Event is fired if the search query is cleared. <br/>
-         * @event clear-search-query
-         */
-        /**
          * Method for firing event to check / uncheck all items. </br>
          * @method checkAllItems
          */
@@ -179,26 +167,35 @@ Custom property | Description | Default
         },
         /**
          * Method for clear search query and firing event. </br>
-         * @method clearSearchQuery
+         * @method _clearSearchQuery
          */
-        clearSearchQuery: function() {
-          this.$.txtSearchQuery.value = "";
-          this.fire("clear-search-query");
+        _clearSearchQuery: function() {
+          if (this.$.txtSearchQuery.value.length === 0) {
+            this._toggleSearchElements();
+          } else {
+            this.$.txtSearchQuery.value = "";
+            this.fire("changed-search-query", { searchQuery: null });
+          }
         },
         /**
          * Method for show / hide search input container. </br>
-         * @method toggleSearchContainer
+         * @method _toggleSearchElements
          */
-        toggleSearchContainer: function() {
-          var searchInputContainer = this.$.searchInputContainer;
+        _toggleSearchElements: function() {
+          var searchInputContainer = this.$.searchInputContainer.classList;
+          var btnClear = this.$.btnClear;
+          var btnSearch = this.$.btnSearch;
 
-          if (searchInputContainer.classList.contains("hide-search-input-container")) {
-            searchInputContainer.classList.remove("hide-search-input-container");
-            searchInputContainer.classList.add("style-search-input-container");
+          if (searchInputContainer.contains("hide-search-input-container")) {
+            searchInputContainer.remove("hide-search-input-container");
+            searchInputContainer.add("style-search-input-container");
+            btnClear.style.display = "block";
+            btnSearch.style.display = "none";
           } else {
-            searchInputContainer.classList.remove("style-search-input-container");
-            searchInputContainer.classList.add("hide-search-input-container");
-            this.clearSearchQuery();
+            searchInputContainer.remove("style-search-input-container");
+            searchInputContainer.add("hide-search-input-container");
+            btnClear.style.display = "none";
+            btnSearch.style.display = "block";
           }
         }
       });
