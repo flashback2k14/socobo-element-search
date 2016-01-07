@@ -16,8 +16,7 @@
         <socobo-element-search
           on-check-all-items="handleCheckAllItems"
           on-uncheck-all-items="handleUncheckAllItems"
-          on-changed-search-query="handleChangedSearchQuery"
-          on-clear-search-query="handleClearSearchQuery">
+          on-changed-search-query="handleChangedSearchQuery">
         </socobo-element-search>
 
         <template id="list" is="dom-repeat" items="{{data}}">
@@ -83,13 +82,6 @@
         } else {
           return item.desc.toUpperCase().match(searchQuery.toUpperCase()) || item.info.toUpperCase().match(searchQuery.toUpperCase());
         }
-      };
-
-      /**
-       * Clear Search Query
-       */
-      demo.handleClearSearchQuery = function() {
-        this.searchQuery = null;
       };
 
       /**
